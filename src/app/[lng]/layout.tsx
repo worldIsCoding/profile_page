@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
 import { languages } from '@/i18n/settings'
-// import Layout from '../../layout'
 import { dir } from 'i18next'
 import { NextResponse } from 'next/server';
+import { Layout } from '@/components/layout';
 // import { ToastContainer } from 'react-toastify';
 
 
@@ -14,23 +14,18 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-  modal,
-  params,
-  
-  
+  // modal,
 }: {
   children: React.ReactNode,
-  modal:React.ReactNode,
-  params?: { lng:string },
+  // modal:React.ReactNode,
 }) {
-  const {lng}=params??{};
   return (
     <>
-     {/* <Layout lng={lng??"en"} > */}
+     <Layout  >
       {/* {modal} */}
       {children}
       {/* <ToastContainer /> */}
-     {/* </Layout> */}
+     </Layout>
 
 </>
   )

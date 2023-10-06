@@ -7,7 +7,7 @@ import { languages, fallbackLng } from '@/i18n/settings'
 import { useTranslation } from '@/i18n'
 import { Metadata, ResolvingMetadata } from 'next'
 import data from '@data'
-
+import { Landing } from '@/components/pageView/landing'
 
 
 export const dynamic = 'force-static'
@@ -22,11 +22,13 @@ export async function generateMetadata(
   return metaData.root;
 }
 
-const  Page=  async({ params: { lng } }: {params:{lng:string},}) =>{
+
+const  Page=  async() =>{
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    <main className=" min-h-screen  container mx-auto">
       <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-      THIS~PAGE
+     <Landing />
+
       </div>
     </main>
   )
