@@ -6,6 +6,9 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  font-family: 'Courier Prime', monospace;
+font-family: 'Montserrat', sans-serif;
+font-family: 'Noto Sans HK', sans-serif;
 }
 
 // *{
@@ -28,8 +31,10 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+
     @apply
-    scrollbar-hide
+    relative
+    font-COOL
 }
 
 .TODO {

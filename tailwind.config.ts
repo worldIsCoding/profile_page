@@ -9,6 +9,10 @@ const config: Config = {
   darkMode:"class",
   theme: {
     extend: {
+      fontFamily: {
+        montserrat: ["Montserrat"],
+        COOL: ["Courier Prime"],
+      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
