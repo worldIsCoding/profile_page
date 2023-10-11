@@ -26,17 +26,23 @@ const config: Config = {
       },
       colors:{
         dark:{
-          primary:"132043",
-          secondary:"1F4172",
-          main:"F1B4BB",
-          normal:"FDF0F0"
+          primary:{
+            500:"#132043"},
+          secondary:{500:"#1F4172"},
+          main:{500:"#F1B4BB"},
+          normal:{500:"#FDF0F0"}
         },
-        light:{
-          primary:"EBE4D1",
-          secondary:"B4B4B3",
-          main:"26577C",
-          normal:"E55604"
-        }
+        
+          primary:{
+            500:"#EBE4D1"},
+          secondary:{
+            500:"#B4B4B3"}
+            ,
+          main:{
+            500:"#26577C"},
+          normal:{
+            500:"#E55604"}
+        
       }
      
     },

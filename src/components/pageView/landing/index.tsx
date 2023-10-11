@@ -35,9 +35,9 @@ export const Landing = () => {
 
   return (
     <div className=" relative">
-      <div className=" container h-full mx-auto   TODO flex flex-row  relative">
+      <div className=" container h-full mx-auto   TODO flex  flex-col lg:flex-row  relative">
         <div className="  flex-1     TODO ">
-          <div className="bg-white/40   sticky top-20   pb-20   ">
+          <div className="  sticky top-20   pb-20   ">
             <div className=" h-full  w-full flex flex-col items-center justify-end  ">
               <ProfileIcon />
               <div className=" flex flex-col items-center gap-8 relative">

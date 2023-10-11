@@ -94,7 +94,7 @@ const Particle=()=>{
         links: {
             enable: false,
             distance: 50,
-            color: isDarkMode?"FDF0F0":  "E55604",
+            color: isDarkMode?"#FDF0F0":  "#26577C",
             opacity: 0.5,
             width: 1,
         },
@@ -125,21 +125,20 @@ const Particle=()=>{
             },
             onClick: {
                 enable: true,
-                mode: "push",
+                mode: isDarkMode?["trail"]: "repulse",
             },
             resize:true
         },
 
         modes: {
             grab: {
-                distance: 400,
+                distance: 300,
                 links: {
                     opacity: 0.5,
-                    
                 },
             },
             repulse: {
-                distance: 200,
+                distance: 300,
             },
             push: {
                 quantity: 4,
