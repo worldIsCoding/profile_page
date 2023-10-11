@@ -24,6 +24,21 @@ const config: Config = {
       minHeight:{
         screen: "100dvh"
       },
+      colors:{
+        dark:{
+          primary:"132043",
+          secondary:"1F4172",
+          main:"F1B4BB",
+          normal:"FDF0F0"
+        },
+        light:{
+          primary:"EBE4D1",
+          secondary:"B4B4B3",
+          main:"26577C",
+          normal:"E55604"
+        }
+      }
+     
     },
   },
   plugins: [],
