@@ -18,9 +18,9 @@ export const ProfileIcon = () => {
   });
 
   return (
-    <div className="TODO w-full flex flex-col justify-center  items-center">
+    <div className="  w-full flex flex-col justify-center  items-center ">
 
-      <div className=" rounded-full  m-8 relative  ">
+      <div className="   m-8 relative   ">
         <svg
           className="transform rounded-full  z-0  -rotate-90  absolute top-1/2 bottom-1/2 right-1/2 left-1/2  -translate-x-1/2 -translate-y-1/2 "
           width="100%"
@@ -44,7 +44,7 @@ export const ProfileIcon = () => {
           />
         </svg>
 
-      <div className=" p-4 rounded-full z-10">
+      <div className=" p-4 rounded-full z-10 bg-white">
         <motion.div
         initial={{rotate:0}}
           style={{ rotate: Number(currentScrollYProgress) * 3.6 }}
@@ -53,20 +53,6 @@ export const ProfileIcon = () => {
           <Image src={human} alt={""} className="" />
         </motion.div>
       </div>
-      </div>
-
-      <div className="text-4xl ">
-        <Typewriter
-          onInit={(typewriter) => {
-            typewriter
-              .typeString(`Hello World!  I'm Angus 😎`)
-              .callFunction(() => {
-                console.log("String typed out!");
-              })
-              .pauseFor(1000)
-              .start();
-          }}
-        />
       </div>
     </div>
   );

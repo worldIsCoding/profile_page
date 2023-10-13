@@ -20,7 +20,7 @@ export const Menu=(props:{})=>{
         // exit={{scaleY:0}}
         animate={{scale:1,height:"auto",y:0}}
           className=" overflow-hidden absolute right-0   top-full  rounded-lg  ">
-            <div className="w-full h-full absolute blur-lg  dark:bg-dark-main-500 bg-main-500/50 z-0"/>
+            <div className="w-full h-full absolute blur-lg   z-0"/>
             
 
             <div className="flex flex-col  items-center z-10 px-10 gap-4 py-4">

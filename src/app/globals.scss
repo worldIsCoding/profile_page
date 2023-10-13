@@ -25,21 +25,33 @@ font-family: 'Noto Sans HK', sans-serif;
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  // background: linear-gradient(
+  //     to bottom,
+  //     transparent,
+  //     rgb(var(--background-end-rgb))
+  //   )
+  //   rgb(var(--background-start-rgb));
 
     @apply
     relative
     font-COOL
+    bg-blue-700
 }
+
+::-moz-selection {
+  background: #01303f;
+}
+::-webkit-selection {
+  background: #01303f;
+}
+::selection {
+  background: #01303f;
+}
+
 
 .TODO {
   @apply 
-  border-2 border-dotted  border-red-500 bg-white/25 rounded-xl
+  border-2 border-dotted  border-red-500 
 }
 
 .cursor{
@@ -58,4 +70,23 @@ body {
 .scrollbar-hide {
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
+}
+
+
+
+.spotlight_card{
+   
+  @apply
+  rounded-lg border-2  border-blue-500 bg-blue-600/95
+  
+}
+
+.spotlight_card::before{
+  background: linear-gradient(135deg, #43A9EF 0%, #BB5EB3 25%, #43A9EF 50%, #BB5EB3 75%, #43A9EF 100%, #BB5EB3 125%);
+  background-size: 300% 200%;
+  background-position: 100% 0%;
+
+  @apply
+  rounded-xl border-4 bg-blue-300 border-blue-500 bg-blue-300/75 blur-lg absolute left-0 top-0 right-0 bottom-0 
+  
 }

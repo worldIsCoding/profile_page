@@ -13,7 +13,6 @@ export const InfoSection =()=>{
             initial={{scale:0}}
             whileInView={{scale:1 }}
             viewport={{once:false}}
-            
             className=" flex flex-col justify-center items-center"
             >
                 <div>  this is  InfoSection</div>

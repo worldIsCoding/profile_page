@@ -31,17 +31,18 @@ export const Header = () => {
 
   return (
     <>
-      <motion.nav className=" fixed top-0 right-0 left-0 h-20  z-10 ">
-        
-
+      <motion.nav className=" fixed top-0 right-0 left-0 py-10  z-10  ">
+      
         <div className="h-full  z-10  flex flex-row items-center justify-between px-6 lg:px-10">
         <div />
 
-      <div className=" relative" ref={menuRef}>
-        <motion.button className="w-10 h-10 z-50   dark:text-dark-main-500 text-main-500  rounded-full"
+      <motion.div 
+       whileHover={{scale:1.2}}
+       whileTap={{scale:0.8, }}
+      className="w-16 h-16  relative rounded-full shadow-xl shadow-primary-500  " ref={menuRef}>
+        <motion.button className=" z-50 w-full h-full   text-blue-500   rounded-full "
         style={{rotate: Number(currentScrollYProgress) * 3.6 }}
-        whileHover={{scale:1.2}}
-        whileTap={{scale:0.8, }}
+       
         onClick={(e)=>{
             e.preventDefault()
           setShowMenu(!showMenu)
@@ -54,16 +55,16 @@ export const Header = () => {
           <Menu />
           
           }
-          </div>
+          </motion.div>
 
           
 
 
         </div>
-        <motion.div
-          className="absolute top-0 w-full h-1    bg-normal-500 "
+        {/* <motion.div
+          className="absolute top-0 w-full h-1    bg-blue-400  shadow-2xl shadow-white"
           style={{ scaleX: scrollYProgress }}
-        />
+        /> */}
       </motion.nav>
     </>
   );

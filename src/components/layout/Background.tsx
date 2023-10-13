@@ -67,10 +67,10 @@ const Particle=()=>{
                 char: [ 
                     {
                         value:["0️","1️"],
-                        font: "arial",
+                        font: "Binary X CHR BRK",
                         // font: "arial",
                         style: " ",
-                        weight: "300",
+                        weight: "100",
                         fill: true,
                     },
                 ],
@@ -166,10 +166,10 @@ const Particle=()=>{
         },
         
     },
-    background: {
-        color: "#000000"
+    // background: {
+    //     color: ""
         
-    },
+    // },
     detectRetina: true,
     retina_detect:true,
     backgroundMode: {
@@ -187,9 +187,7 @@ const Particle=()=>{
 export const Background=()=>{
 
     return (
-        <div className={clsx(" ")}>
-            {/* <div className={clsx(` fixed w-1/2 h-1/2 top-1/2 bottom-1/2 right-1/2 left-1/2 
-            -translate-y-1/2  -translate-x-1/2  rounded-full  shadow-lg shadow-[#02577a] bg-[#02577a]/50 blur-xl -z-10`)} /> */}
+        <div className={clsx("")}>
             <Particle />
          </div>
     )

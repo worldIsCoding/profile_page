@@ -23,9 +23,9 @@ export default function RootLayout({
 
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com"  />
-<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@700&family=Montserrat:wght@400;800&family=Noto+Sans+HK&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@700&family=Montserrat:wght@400;800&family=Noto+Sans+HK&display=swap" rel="stylesheet" />
+<link href="https://fonts.cdnfonts.com/css/binary" rel="stylesheet" />
 
-</link>
       </head>
       
       <body>

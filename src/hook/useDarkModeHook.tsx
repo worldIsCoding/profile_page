@@ -28,12 +28,12 @@ export const DarkModeProvider = (props: { children?: React.ReactNode }) => {
   };
 
   const changeTheme = async () => {
-    const root = window.document.documentElement;
-    await localStorage.setItem("theme", isDarkMode ? "light" : "dark");
+    // const root = window.document.documentElement;
+    // await localStorage.setItem("theme", isDarkMode ? "light" : "dark");
 
-    root.className = isDarkMode ? "" : "dark";
+    // root.className = isDarkMode ? "" : "dark";
 
-    setDarkMode(!isDarkMode);
+    // setDarkMode(!isDarkMode);
   };
 
   return (

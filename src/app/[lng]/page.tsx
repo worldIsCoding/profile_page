@@ -25,7 +25,7 @@ export async function generateMetadata(
 
 const  Page=  async() =>{
   return (
-    <main className=" min-h-screen ">
+    <main className=" min-h-screen">
      <Landing />
     </main>
   )
