@@ -35,77 +35,85 @@ const Particle=()=>{
  options={{
     name: "Chars",
     fpsLimit: 60,
+  
     particles: {
+        collisions:{
+            // absorb: {speed:0.1},
+            // bounce: IParticlesBounce;
+            enable: true,
+            // maxSpeed: RangeValue;
+            mode: "bounce",
+            overlap:{
+                enable:false
+            }
+        },
         number: {
-            value: 100,
+            value: 512,
             density: {
-                enable: false,
+                enable: true,
             },
         },
         color: {
-            value: isDarkMode?"FDF0F0": "E55604",
+            value: ["#ffffff","#d4f0fc","#89d6fb","#02a9f7","#02577a"],
         },
+        
         stroke: {
             width: 1,
-            color: isDarkMode?"FDF0F0": "E55604",
+            color: "#ffffff",
         },
         shape: {
             type: "char",
             options: {
-                char: [
-                    // {
-                    //     value: ["true", "false"],
-                    //     font: "Verdana",
-                    //     style: "",
-                    //     weight: "300",
-                    //     fill: true,
-                    // },
+                char: [ 
                     {
-                        value:isDarkMode?["👻","🧛"] :["0️⃣","1️⃣","2️⃣","3️⃣","5️⃣","7️⃣","8️⃣","9️⃣","🔟"],
-                        font: "Verdana",
-                        style: "",
+                        value:["0️","1️"],
+                        font: "arial",
+                        // font: "arial",
+                        style: " ",
                         weight: "300",
-                        fill: false,
+                        fill: true,
                     },
-                    // {
-                    //     value: ["undefined", "null"],
-                    //     font: "Plecnik",
-                    //     style: "",
-                    //     weight: "300",
-                    //     fill: true, 
-        
-                    // },
                 ],
             },
         },
         opacity: {
+            // value:0.,
             value: {
-                min: 0,
+                min: 0.4,
                 max: 0.7,
             },
             animation: {
-                enable: true,
-                speed: 1,
+                enable: false,
+                speed: 0.5,
             },
         },
         size: {
-            value: 16,
+            value: 12
+            // {
+                
+            //     min:12,
+            //     max:16},
         },
         links: {
             enable: false,
             distance: 50,
-            color: isDarkMode?"#FDF0F0":  "#26577C",
-            opacity: 0.5,
+            color: {
+                value: "random"
+            } ,
+            opacity: 1,
             width: 1,
         },
         move: {
             enable: true,
             speed: 1,
-            // direction:"right",
+            direction:"bottom",
+            straight:true,
+            random:false,
+        
         },
         rotate: {
             animation: {
-              enable: true,
+              enable: false,
               speed: 10,
               sync: false
             }
@@ -116,7 +124,7 @@ const Particle=()=>{
         events: {
             onHover: {
                 enable: true,
-                mode: isDarkMode?"repulse": ["grab"],
+                mode: ["bubble","grab"],
                 // parallax: {
                 //     enable: true,
                 //     force: 60,
@@ -124,40 +132,48 @@ const Particle=()=>{
                 //   }
             },
             onClick: {
-                enable: true,
-                mode: isDarkMode?["trail"]: "repulse",
+                enable: false,
+                mode:  ["repulse"],
             },
             resize:true
         },
 
         modes: {
             grab: {
-                distance: 300,
+                distance: 200,
                 links: {
-                    opacity: 0.5,
+                    opacity: 0.8,
                 },
             },
+        bubble:{
+            distance:200,
+            sie:20,
+            opacity:1,
+            duration:1
+
+        },
             repulse: {
-                distance: 300,
+                distance: 150,
             },
             push: {
-                quantity: 4,
+                quantity: 1,
             },
             trail: {
                 delay: 0.05,
                 quantity: 5
               },
+            
         },
         
     },
     background: {
-        color: isDarkMode?"132043":"EBE4D1",
+        color: "#000000"
         
     },
     detectRetina: true,
     retina_detect:true,
     backgroundMode: {
-        zIndex:-1,
+        zIndex:-11,
         enable: true
       }
         }}
@@ -172,6 +188,8 @@ export const Background=()=>{
 
     return (
         <div className={clsx(" ")}>
+            {/* <div className={clsx(` fixed w-1/2 h-1/2 top-1/2 bottom-1/2 right-1/2 left-1/2 
+            -translate-y-1/2  -translate-x-1/2  rounded-full  shadow-lg shadow-[#02577a] bg-[#02577a]/50 blur-xl -z-10`)} /> */}
             <Particle />
          </div>
     )
