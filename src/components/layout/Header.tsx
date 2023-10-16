@@ -64,7 +64,7 @@ export const Header = () => {
       animate={isShowHeader ? { opacity: 0.8, scaleX: 1 } : { scaleX: 0, opacity: 0 }}
       transition={{ duration: 0.3 }}
     >
-      <div className="mx-auto h-full container flex flex-row items-center w-full  gap-10">
+      <div className="mx-auto h-full container flex flex-row items-center w-full  gap-10  px-4 ">
         {optionList.map((data, index) => {
           return (
             <motion.div
@@ -81,7 +81,7 @@ export const Header = () => {
       </div>
 
       <motion.div
-        className="absolute bottom-0 w-full h-1   left-0   "
+        className="absolute bottom-0 w-full h-1   left-0  "
         style={{width: `${currentScrollYProgress}%`,
           background:`linear-gradient(to right, #fff ${currentScrollYProgress}%, #d4f0fc , #89d6fb  )`}}
       />
