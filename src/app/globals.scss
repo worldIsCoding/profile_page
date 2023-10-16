@@ -35,7 +35,7 @@ body {
     @apply
     relative
     font-COOL
-    bg-blue-700
+    bg-gradient-to-b  from-blue-600 via-blue-700 to-black
 }
 
 ::-moz-selection {

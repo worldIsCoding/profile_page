@@ -54,7 +54,7 @@ const Particle=()=>{
             },
         },
         color: {
-            value: ["#ffffff","#d4f0fc","#89d6fb","#02a9f7","#02577a"],
+            value: ["#ffffff","#d4f0fc","#89d6fb","#02a9f7"],
         },
         
         stroke: {
