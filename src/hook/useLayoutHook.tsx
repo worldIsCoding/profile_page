@@ -23,6 +23,9 @@ export const LayoutProvider = (props: { children?: React.ReactNode }) => {
   const [currentScrollYProgress, setCurrentScrollYProgress] =
     useState<number>(0);
 
+    useEffect(()=>{
+        window.scrollTo(0, 0)
+    },[])
   //   useEffect(() => {
   //     if(isClient)
   //       getDefaultTheme();

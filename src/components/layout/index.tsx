@@ -8,7 +8,7 @@ import clsx from "clsx";
 import DayImage from "@public/images/pexels-jimmy-chan-day.jpg"
 import NightImage from "@public/images/pexels-pixabay-night.jpg"
 import {Background} from "./Background"
-import {Nav} from "@/components/pageView/landing/Nav"
+import {Header} from "./Header"
 
 export const Layout = ({ children }: { children: React.ReactNode }) => {
   
@@ -17,7 +17,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
     <AnimatePresence initial={false} >
      
       <div className={clsx("h-auto relative    overflow-x-hidden")}> 
-      <Nav  />
+      <Header  />
        {children}
       <Background />
     

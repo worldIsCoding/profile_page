@@ -26,8 +26,6 @@ import { OptionList } from "./OptionList";
 import { AboutMe } from "@/components/section/aboutMe";
 import { Job } from "@/components/section/job";
 import { Project } from "@/components/section/project";
-import { Nav } from "./Nav";
-import { Header } from "@/components/layout/Header";
 import { useLayout } from "@/hook/useLayoutHook";
 
 const SectionDiv = ({ children }: { children: ReactElement }) => {
@@ -82,10 +80,9 @@ export const Landing = () => {
 
   return (
     <div className=" relative w-full  ">
-      <Nav />
       <div className=" container  mx-auto  overflow-y-auto   relative ">
   
-        <div className=" relative py-20 min-h-screen  ">
+        <div className=" relative py-20 min-h-screen  " id="/">
           <div className=" flex flex-row   relative  w-full    ">
             <div className="flex-1 relative">
               <div className="mb-2">

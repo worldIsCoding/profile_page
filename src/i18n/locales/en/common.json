@@ -1,9 +1,13 @@
 {
     "intro": "Hello World! My Name is Angus and a Front-end Developer. Welcome to my website.",
     "option": {
-      "intro": "About me",
+      "aboutMe": "About me",
       "job": "Job",
       "project": "Project"
+    },
+    "aboutMe":{
+        "title":"About me",
+        "intro":"I'm a front-end developer with four years of experience in front-end development. I've worked on a variety of projects for clients in the retail, travel, and healthcare industries. I'm passionate about creating great user experiences and have a strong understanding of usability and accessibility standards."
     }
   }
   

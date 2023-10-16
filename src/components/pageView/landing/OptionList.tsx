@@ -63,7 +63,7 @@ export const OptionList = (props: OptionListType) => {
     return [
       {
         delay: 4,
-        label: t("option.intro"),
+        label: t("option.aboutMe"),
         duration: 1,
         id: "#about_me",
       },

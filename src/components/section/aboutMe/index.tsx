@@ -17,6 +17,9 @@ export const AboutMe = () => {
         number: 4,
         label: "expensive year",
       },
+      {number:181,
+        label:"cm tall"
+    }
     ];
   }, []);
 
@@ -31,7 +34,14 @@ export const AboutMe = () => {
         },{
             label:"Node.js",Level:100
         },
-        {label:"TypeScript",Level:100}
+        {label:"TypeScript",Level:100},
+        {label:"JavaScript",Level:100},
+        {label:"HTML",Level:100},
+        {label:"CSS",Level:100},
+        {label:"TailwindCSS",Level:100},
+        {label:"Framer Motion",Level:100},
+        {label:"Git",Level:100},
+        {label:"Vue",Level:100},
         ]   
     )
   },[])
@@ -41,21 +51,48 @@ export const AboutMe = () => {
       <motion.div
         initial={{ scale: 0 }}
         whileInView={{ scale: 1 }}
-        viewport={{ once: false }}
-        className=" flex flex-col justify-center items-center"
+        viewport={{ once: true }}
+        className=" flex flex-col justify-center items-center text-white"
       >
-        <div></div>
 
-        <div>desc</div>
-        <div>images</div>
+        <motion.div
+         initial={{width:0}}
+         whileInView={{width:"100%"}}
+         viewport={{once:false}}
+         transition={{duration:1,delay:0.5}}
+        className="w-full"
+        >
+            <h1 className="text-4xl">
+                {t("aboutMe.title")}
+            </h1>
+            <motion.div 
+           
+            className=" bg-white my-2 h-1"/>
+        </motion.div>
 
-        <div className="flex flex-row items-center justify-between">
+
+        <div className="flex flex-col gap-4 lg:flex-row ">
+        <div className=" whitespace-normal">
+            {t("aboutMe.intro")}
+        </div>
+        <div className=" flex flex-row flex-wrap TODO ">
+        {skillSetData.map((data,index)=>{
+            return(
+                <div className=" border border-white p-2 " key={index}>
+                    {data.label}
+                </div>
+            )
+        })}
+        </div>
+        </div>
+
+        <div className="flex flex-row flex-wrap items-center justify-between gap-4">
           {numberCardData.map((data, index) => {
             return (
               <motion.div
                 key={index}
                 
-                initial={{ opacity: 0 ,y:100}}
+                initial={{ opacity: 0 ,y:10}}
                 transition={{ delay: index + 1, duration: 1 }}
                 whileInView={{ opacity: 1,y:0 }}
                 
@@ -65,6 +102,15 @@ export const AboutMe = () => {
               </motion.div>
             );
           })}
+        </div>
+
+
+        <div className="flex flex-row flex-wrap">
+            <div>
+                contact
+          <div>tel: 4</div>
+            </div>
+
         </div>
       </motion.div>
     </div>
