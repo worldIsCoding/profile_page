@@ -88,7 +88,7 @@ export interface IAnimTextProps {
       {showCursor&& <motion.div
       variants={cursorVariants}
       animate="blinking"
-      className={clsx("inline-block  h-9 w-[4px] translate-y-1 bg-slate-900",cursorClassName)}
+      className={clsx("inline-block  h-6 w-[4px] translate-y-1 bg-slate-900",cursorClassName)}
     />}
     </span>
 

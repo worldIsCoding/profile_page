@@ -24,7 +24,7 @@ font-family: 'Noto Sans HK', sans-serif;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
+  // color: rgb(var(--foreground-rgb));
   // background: linear-gradient(
   //     to bottom,
   //     transparent,
@@ -33,6 +33,7 @@ body {
   //   rgb(var(--background-start-rgb));
 
     @apply
+   h-auto
     relative
     font-COOL
     bg-gradient-to-b  from-blue-600 via-blue-700 to-black
@@ -76,17 +77,22 @@ body {
 
 .spotlight_card{
    
+  
   @apply
-  rounded-lg border-2  border-blue-500 bg-blue-600/95
+    bg-blue-700/75 
   
 }
 
-.spotlight_card::before{
-  background: linear-gradient(135deg, #43A9EF 0%, #BB5EB3 25%, #43A9EF 50%, #BB5EB3 75%, #43A9EF 100%, #BB5EB3 125%);
-  background-size: 300% 200%;
-  background-position: 100% 0%;
 
-  @apply
-  rounded-xl border-4 bg-blue-300 border-blue-500 bg-blue-300/75 blur-lg absolute left-0 top-0 right-0 bottom-0 
-  
-}
+
+// .spotlight-shadow{
+//     z-index: -1;
+//     animation: highlight 2s linear infinite;
+//     background-size: 300% 100%;
+//     background-position: 200% 0%;
+//     opacity: 0.;
+//     filter: blur(10px);
+//     @apply bg-white 
+//     absolute top-0 bottom-0 left-0  right-0
+
+// }

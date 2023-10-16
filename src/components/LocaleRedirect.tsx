@@ -6,6 +6,8 @@ import Negotiator from "negotiator";
 import { match } from '@formatjs/intl-localematcher'
 import { fallbackLng, languages } from "@/i18n/settings";
 import { DarkModeProvider } from "@/hook/useDarkModeHook";
+import ReactLoading from 'react-loading';
+
 
 export const LocaleRedirect = () => {
   useEffect(()=>{
@@ -19,7 +21,9 @@ export const LocaleRedirect = () => {
   return (
   <DarkModeProvider>
     <div className="flex items-center justify-center w-[100dvw] h-[100dvh]">
-      <span className="banner-highlight" title="Loading...">Loading...</span>
+      <span className="banner-highlight" title="Loading...">
+      <ReactLoading type={"bars"} color={"white"} height={300} width={300} />
+      </span>
     </div>
    </DarkModeProvider>
   )

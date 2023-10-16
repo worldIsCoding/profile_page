@@ -1,5 +1,4 @@
 "use client";
-import { InfoSection } from "@/components/section/InfoSection";
 import {
   motion,
   useScroll,
@@ -24,6 +23,12 @@ import { useTranslation } from "@/i18n/client";
 import { SpotlightCard } from "@/components/common/SpotlightCard";
 import clsx from "clsx";
 import { OptionList } from "./OptionList";
+import { AboutMe } from "@/components/section/aboutMe";
+import { Job } from "@/components/section/job";
+import { Project } from "@/components/section/project";
+import { Nav } from "./Nav";
+import { Header } from "@/components/layout/Header";
+import { useLayout } from "@/hook/useLayoutHook";
 
 const SectionDiv = ({ children }: { children: ReactElement }) => {
   return (
@@ -32,8 +37,8 @@ const SectionDiv = ({ children }: { children: ReactElement }) => {
       whileInView={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0 }}
       transition={{ duration: 0.5 }}
-      viewport={{ once: false, amount: 0.8 }}
-      className="h-screen w-full pt-20"
+      viewport={{ once: true, amount: 0.8 }}
+      className="min-h-screen w-full pt-20"
     >
       {children}
     </motion.div>
@@ -41,65 +46,108 @@ const SectionDiv = ({ children }: { children: ReactElement }) => {
 };
 
 export const Landing = () => {
-  const { lng } = useParams();
-  const { t } = useTranslation(["common"]);
+  // const { lng } = useParams();
+  const { t } = useTranslation();
+  const { isShowHeader, setIsShowHeader}=useLayout()
   const infoRef = useRef<HTMLDivElement>(null);
-  const expRef = useRef<HTMLDivElement>(null);
+  const jobRef = useRef<HTMLDivElement>(null);
   const projectRef = useRef<HTMLDivElement>(null);
   const contactRef = useRef<HTMLDivElement>(null);
+  const anchorRef = useRef<HTMLDivElement>(null);
+
+  const [isSticky, setIsSticky] = useState<boolean>(false);
+
+
+
+
+  const onClickOption=(index:number)=>{
+    if (index == 0) {
+      infoRef.current?.scrollIntoView({
+        behavior: "smooth",
+      });
+    }
+    if (index == 1) {
+      jobRef.current?.scrollIntoView({
+        behavior: "smooth",
+      });
+    }
+    if (index == 2) {
+      projectRef.current?.scrollIntoView({
+        behavior: "smooth",
+      });
+    }
+  }
+
+
 
   return (
     <div className=" relative w-full  ">
-      <div className=" container h-full mx-auto    relative py-20">
-        <div className=" sticky top-0   ">
-          <div className=" flex flex-row    w-full   TODO ">
-            <div>
-              <ProfileIcon />
-            </div>
-            <div className="w-full">
-              <SpotlightCard>
-                <div className="  ">
-                  <div className="mb-2">
-                    <TypeTextView
-                      baseText={t("intro")}
-                      delay={1}
-                      duration={2}
-                      cursorClassName="bg-white"
-                      className="text-4xl font-Binary text-white"
-                    />
+      <Nav />
+      <div className=" container  mx-auto  overflow-y-auto   relative ">
+  
+        <div className=" relative py-20 min-h-screen  ">
+          <div className=" flex flex-row   relative  w-full    ">
+            <div className="flex-1 relative">
+              <div className="mb-2">
+                <SpotlightCard>
+                  <div className="  ">
+                    <ProfileIcon />
+                    <div className="mb-2">
+                      <TypeTextView
+                        baseText={t("intro")}
+                        delay={1}
+                        duration={2}
+                        cursorClassName="bg-white"
+                        className="text-4xl font-Binary text-white"
+                      />
+                    </div> 
+                    <motion.div
+                      ref={anchorRef}
+                      onViewportLeave={()=>{
+                        setIsShowHeader(true)
+                      }}
+                      onViewportEnter={()=>{
+                        setIsShowHeader(false)
+                      }}
+                    >
+                      <OptionList
+                        onClickOption={onClickOption}
+                      />
+                    </motion.div>
                   </div>
-
-                  <OptionList />
-                </div>
-              </SpotlightCard>
+                </SpotlightCard>
+              </div>
             </div>
           </div>
         </div>
 
-        <div className=" flex-1 bg-white ">
-          <div ref={infoRef}>
+        <div className="   ">
+          <div ref={infoRef} id={"about_me"}>
+          
             <SectionDiv>
-              <div>
-                <InfoSection />
+            <SpotlightCard> <div>
+                <AboutMe />
               </div>
+              </SpotlightCard>
+            </SectionDiv>
+           
+          </div>
+
+          <div ref={jobRef} id={"job"}>
+            <SectionDiv>
+               <SpotlightCard><div>
+                <Job />
+              </div> </SpotlightCard>
             </SectionDiv>
           </div>
 
-          <div ref={expRef}>
+          <div ref={projectRef} id={"project"}>
             <SectionDiv>
-              <div>section expRef</div>
-            </SectionDiv>
-          </div>
-
-          <div ref={projectRef}>
-            <SectionDiv>
-              <div>section projectRef</div>
-            </SectionDiv>
-          </div>
-
-          <div ref={contactRef}>
-            <SectionDiv>
-              <div>section contactRef</div>
+            <SpotlightCard>
+              <div>
+                <Project />
+              </div>
+              </SpotlightCard>
             </SectionDiv>
           </div>
         </div>

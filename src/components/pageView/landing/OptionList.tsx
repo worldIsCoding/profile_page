@@ -2,7 +2,26 @@ import { TypeTextView } from "@/components/common/TypeTextView";
 import { animate, motion, stagger } from "framer-motion";
 import clsx from "clsx";
 import { useEffect, useMemo, useState } from "react";
-import PlayIcon from "@public/images/play-icon.svg"
+import PlayIcon from "@public/images/play-icon.svg";
+import { useTranslation } from "@/i18n/client";
+
+type OptionListType = {
+  onClickOption: (index: number) => void;
+};
+
+const cursorVariants = {
+  blinking: {
+    opacity: [0, 0, 1, 1],
+    transition: {
+      duration: 1,
+      repeat: Infinity,
+      repeatDelay: 0,
+      ease: "linear",
+      times: [0, 0.5, 0.5, 1],
+    },
+  },
+};
+
 export const OptionItem = (props: {
   clickHandle: () => void;
   children: React.ReactNode;
@@ -12,14 +31,17 @@ export const OptionItem = (props: {
   return (
     <motion.button
       onClick={() => clickHandle()}
-      className={clsx("whitespace-nowrap TODO hidden delayShow")}>
-      {children} 
+      className={clsx("whitespace-nowrap  hidden delayShow")}
+    >
+      {children}
     </motion.button>
   );
 };
 
-export const OptionList = () => {
-  const [currentSelected, setCurrentSelected] = useState<null|number>(null);
+export const OptionList = (props: OptionListType) => {
+  const {} = props;
+  const { t } = useTranslation();
+  const [currentSelected, setCurrentSelected] = useState<null | number>(null);
   useEffect(() => {
     animate(
       ".delayShow",
@@ -41,69 +63,78 @@ export const OptionList = () => {
     return [
       {
         delay: 4,
-        label: "anchor INFO",
+        label: t("option.intro"),
         duration: 1,
-        clickHandle: () => {},
+        id: "#about_me",
       },
       {
         delay: 5,
-        label: "anchor INFO",
+        label: t("option.job"),
         duration: 1,
-        clickHandle: () => {},
+        id: "#job",
       },
       {
         delay: 6,
-        label: "anchor INFO",
+        label: t("option.project"),
         duration: 1,
-        clickHandle: () => {},
+        id: "#project",
       },
     ];
-  }, []);
+  }, [t]);
 
   return (
     <motion.div
       initial={{ display: "none" }}
       animate={{ display: "flex" }}
       transition={{ delay: 3, duration: 1 }}
-      className="hidden  w-full TODO text-white   flex-col items-start justify-start gap-4 relative"
+      className={clsx(
+        "hidden  w-full  flex-col text-white   items-start justify-start gap-4 relative"
+      )}
     >
       {optionListData.map((data, index) => {
-        
-        const isCurrentSelected=currentSelected&& index+1==currentSelected?true:false
+        const isCurrentSelected =
+          currentSelected && index + 1 == currentSelected ? true : false;
         return (
-          <motion.div key={index}
-          onHoverEnd={()=>{
-            // setCurrentSelected(null)
-          }}
-          onHoverStart={()=>{
-            setCurrentSelected(index+1)
-          }}
-          className={clsx("flex flex-row items-center gap-4",isCurrentSelected&&" ")}
+          <motion.div
+            key={index}
+            onHoverEnd={() => {
+              setCurrentSelected(null);
+            }}
+            onHoverStart={() => {
+              setCurrentSelected(index + 1);
+            }}
+            className={clsx(
+              "flex flex-row items-center gap-2 ",
+              isCurrentSelected && "scale-105  "
+            )}
           >
-            <OptionItem 
-            clickHandle={() => {data.clickHandle()}} >
+            <OptionItem
+              clickHandle={() => {
+                const section = document.querySelector(data.id);
+                section &&
+                  section.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start",
+                  });
+              }}
+            >
               <TypeTextView
                 baseText={data.label}
                 delay={data.delay}
                 duration={data.duration}
                 cursorClassName="bg-white"
-                className={clsx("text-4xl font-Binary text-white",isCurrentSelected?"scale-125 ":"text-white")}
+                className={clsx("text-4xl font-Binary text-white")}
               />
             </OptionItem>
 
-            {isCurrentSelected&&
-              <motion.div 
-              animate={{backgroundColor:["transparent","white"]}}
-              transition={{duration:0,repeat:Infinity,ease:"linear",repeatDelay:1}}
-              viewport={{once:false}}
-              className="w-4 h-8   border   "
-              ><PlayIcon className=" rotate-180 w-full h-full text-transparent fill-black bg-transparent " /></motion.div>
-            }
-          
+            {isCurrentSelected && (
+              <motion.div className="w-6 h-6  ">
+                <PlayIcon className=" rotate-180 w-full h-full  fill-white  " />
+              </motion.div>
+            )}
           </motion.div>
         );
       })}
-    
     </motion.div>
   );
 };

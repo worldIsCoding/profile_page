@@ -26,9 +26,10 @@ export const SpotlightCard=(props:{children:React.ReactNode})=>{
   
     return (
 
-        <div className="relative  spotlight_card  p-10 group"
+        <div className="relative  spotlight_card  p-10 group "
         onMouseMove={mouseMoveHandle}
         >
+            <div  className="spotlight-shadow"/>
             <motion.div 
             className={clsx("top-0 bottom-0 right-0 left-0  absolute  pointer-events-none  ",
             "group-hover:opacity-100 opacity-0 ")} 
@@ -37,7 +38,13 @@ export const SpotlightCard=(props:{children:React.ReactNode})=>{
         {children}
        
 
-        
+        <motion.div
+        className="absolute inset-0 z-0 overflow-hidden bg-fixed"
+        style={{
+          clipPath: `polygon(0% 0%, 0% 100%, calc(0% + 1px) 100%, calc(0% + 1px) calc(0% + 1px), calc(100% - 1px) calc(0% + 1px), calc(100% - 1px) calc(100% - 1px), calc(0% + 1px) calc(100% - 1px), calc(0% + 1px) 100%, 100% 100%, 100% 0%)`,
+          background: `radial-gradient(circle at ${mouseX}px ${mouseY}px, hsla(${(Number(mouseX) + Number(mouseY))/5},90%,70%,0.35) 0%,transparent 10%,transparent) fixed`
+        }}
+      ></motion.div>
 
         </div>
     )

@@ -4,18 +4,13 @@ import Image from "next/image";
 import human from "@public/images/human.png";
 import Typewriter from "typewriter-effect";
 import clsx from "clsx";
+import { useLayout } from "@/hook/useLayoutHook";
 
 export const ProfileIcon = () => {
-  const [currentScrollYProgress, setCurrentScrollYProgress] =
-    useState<number>(0);
 
-  const { scrollYProgress, scrollY } = useScroll();
+  const {currentScrollYProgress,scrollYProgress}=useLayout()
+  
 
-  useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    console.log("Page scroll: ", latest);
-
-    setCurrentScrollYProgress(latest * 100);
-  });
 
   return (
     <div className="  w-full flex flex-col justify-center  items-center ">

@@ -1,3 +1,8 @@
 {
-    "intro":"Hello World! I'm Angus. Welcome to my website.😎"
+  "intro": "Hello World! My Name is Angus and a Front-end Developer. Welcome to my website.",
+  "option": {
+    "intro": "About me",
+    "job": "Job",
+    "project": "Project"
+  }
 }

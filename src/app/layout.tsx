@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { dir } from "i18next";
 import { NextResponse } from "next/server";
 import { DarkModeProvider } from "@/hook/useDarkModeHook";
+import { LayoutProvider } from "@/hook/useLayoutHook";
 
 
 
@@ -30,7 +31,9 @@ export default function RootLayout({
       
       <body>
       <DarkModeProvider>
+        <LayoutProvider >
         {children}
+        </LayoutProvider>
         </DarkModeProvider></body>
     </html>
   );
