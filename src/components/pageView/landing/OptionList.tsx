@@ -31,7 +31,7 @@ export const OptionItem = (props: {
   return (
     <motion.button
       onClick={() => clickHandle()}
-      className={clsx("whitespace-nowrap  hidden delayShow")}
+      className={clsx("whitespace-nowrap  hidden delayShow ")}
     >
       {children}
     </motion.button>
@@ -104,8 +104,8 @@ export const OptionList = (props: OptionListType) => {
               setCurrentSelected(index + 1);
             }}
             className={clsx(
-              "flex flex-row items-center gap-2 ",
-              isCurrentSelected && "scale-105  "
+              "flex flex-row items-center gap-2 transition-all",
+              isCurrentSelected && "scale-105 bg-secondary-500 px-2 "
             )}
           >
             <OptionItem
@@ -123,13 +123,13 @@ export const OptionList = (props: OptionListType) => {
                 delay={data.delay}
                 duration={data.duration}
                 cursorClassName="bg-white"
-                className={clsx("text-4xl font-Binary text-white")}
+                className={clsx(" text-4xl font-COOL text-white",isCurrentSelected&&"")}
               />
             </OptionItem>
 
             {isCurrentSelected && (
-              <motion.div className="w-6 h-6  ">
-                <PlayIcon className=" rotate-180 w-full h-full  fill-white  " />
+              <motion.div className="w-6 h-6 transition-colors ">
+                <PlayIcon className={clsx(" rotate-180 w-full h-full  fill-white  ")} />
               </motion.div>
             )}
           </motion.div>

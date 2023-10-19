@@ -36,8 +36,9 @@ const SectionDiv = ({ children }: { children: ReactElement }) => {
       exit={{ opacity: 0, scale: 0 }}
       transition={{ duration: 0.5 }}
       viewport={{ once: true, amount: 0.8 }}
-      className="min-h-screen w-full pt-20"
+      className="relative w-full h-auto"
     >
+     
       {children}
     </motion.div>
   );
@@ -80,32 +81,32 @@ export const Landing = () => {
 
   return (
     <div className=" relative w-full  ">
-      <div className=" container  mx-auto  overflow-y-auto   relative ">
-  
-        <div className=" relative py-20 min-h-screen  " id="/">
+      <div className="  container  mx-auto  overflow-y-auto   relative ">
+        <motion.div className=" relative py-20 min-h-screen " id="/"
+         onViewportLeave={()=>{
+          setIsShowHeader(true)
+        }}
+        onViewportEnter={()=>{
+          setIsShowHeader(false)
+        }} >
           <div className=" flex flex-row   relative  w-full    ">
             <div className="flex-1 relative">
               <div className="mb-2">
                 <SpotlightCard>
                   <div className="  ">
                     <ProfileIcon />
-                    <div className="mb-2">
+                    <div className="mb-8">
                       <TypeTextView
                         baseText={t("intro")}
                         delay={1}
                         duration={2}
                         cursorClassName="bg-white"
-                        className="text-4xl font-Binary text-white"
+                        className="text-4xl font-COOL text-white"
                       />
                     </div> 
                     <motion.div
                       ref={anchorRef}
-                      onViewportLeave={()=>{
-                        setIsShowHeader(true)
-                      }}
-                      onViewportEnter={()=>{
-                        setIsShowHeader(false)
-                      }}
+                     
                     >
                       <OptionList
                         onClickOption={onClickOption}
@@ -116,13 +117,15 @@ export const Landing = () => {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
+        
 
-        <div className="   ">
-          <div ref={infoRef} id={"about_me"}>
-          
+        <motion.div className=" relative mt-20 " >
+          <div ref={infoRef} id={"about_me"} className=" relative" >   
             <SectionDiv>
-            <SpotlightCard> <div>
+            <SpotlightCard> 
+              <div>
+           
                 <AboutMe />
               </div>
               </SpotlightCard>
@@ -147,7 +150,7 @@ export const Landing = () => {
               </SpotlightCard>
             </SectionDiv>
           </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );

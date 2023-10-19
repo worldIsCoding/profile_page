@@ -14,7 +14,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
   
   
   return (
-    <AnimatePresence initial={false} >
+    // <AnimatePresence initial={false} >
      
       <div className={clsx("h-auto relative    overflow-x-hidden")}> 
       <Header  />
@@ -22,7 +22,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
       <Background />
     
       </div>
-      </AnimatePresence>
+      // </AnimatePresence>
    
   );
 };

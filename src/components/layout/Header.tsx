@@ -54,14 +54,14 @@ export const Header = () => {
 
   return (
     <motion.nav
-      className={clsx("z-50 fixed top-0 w-full h-14 bg-gradient-to-r from-primary-700 to-black to-70% ",
+      className={clsx("backdrop-blur z-50 fixed top-0 w-full h-14 bg-gradient-to-r from-primary-700 to-black to-70% ",
       // `to-[${scrollYProgress}]`
       
       )}
       initial={{ opacity: 0 }}
       style={{background:`linear-gradient(to right, #000 ${currentScrollYProgress}%,  #01303f  ,#02577a  )`}}
       // style={{gradientColorStopPositions:currentScrollYProgress}}
-      animate={isShowHeader ? { opacity: 0.8, scaleX: 1 } : { scaleX: 0, opacity: 0 }}
+      animate={isShowHeader ? { opacity: 1,width:"100%",y:0  } : { opacity: 0,y:-50 }}
       transition={{ duration: 0.3 }}
     >
       <div className="mx-auto h-full container flex flex-row items-center w-full  gap-10  px-4 ">

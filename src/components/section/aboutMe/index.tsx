@@ -1,11 +1,14 @@
 import { motion } from "framer-motion";
 import { NumberCard } from "./NumberCard";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { useTranslation } from "@/i18n/client";
+import { CustomDialog } from "@/components/common/CustomDialog";
+import { SkillGame } from "./skillGame";
 
 export const AboutMe = () => {
   const { t } = useTranslation();
 
+  const [openModel,setOpenModel]=useState<boolean>(false)
 
   const numberCardData = useMemo(() => {
     return [
@@ -47,12 +50,15 @@ export const AboutMe = () => {
   },[])
 
   return (
-    <div>
+    <>
+     
+    <div className=" relative">
+     
       <motion.div
         initial={{ scale: 0 }}
         whileInView={{ scale: 1 }}
         viewport={{ once: true }}
-        className=" flex flex-col justify-center items-center text-white"
+        className=" relative flex flex-col justify-center items-center text-white"
       >
 
         <motion.div
@@ -75,7 +81,7 @@ export const AboutMe = () => {
         <div className=" whitespace-normal">
             {t("aboutMe.intro")}
         </div>
-        <div className=" flex flex-row flex-wrap TODO ">
+        <div className=" flex flex-row flex-wrap TODO " onClick={()=>{setOpenModel(true)}}>
         {skillSetData.map((data,index)=>{
             return(
                 <div className=" border border-white p-2 " key={index}>
@@ -113,6 +119,18 @@ export const AboutMe = () => {
 
         </div>
       </motion.div>
+
+      {openModel&&
+      
+        <CustomDialog close={()=>setOpenModel(false)}>
+          <div className=" relative">
+        <SkillGame />
+
+          </div>
+        </CustomDialog>
+       
+        }
     </div>
+    </>
   );
 };

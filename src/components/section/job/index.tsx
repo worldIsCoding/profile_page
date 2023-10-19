@@ -1,12 +1,17 @@
+import { useTranslation } from "@/i18n/client"
 
 
 export const Job=()=>{
-
+    const {t} =useTranslation()
+    
 
     return (
 
         <div>
-            job
+            <h1 className="text-4xl">
+                {t("job.title")}
+            </h1>
+
         </div>
     )
 }
