@@ -17,13 +17,13 @@ export const CustomDialog = ({
 
   return (
     <motion.div
-      className=" fixed  top-0 bottom-0 right-0 left-0 flex flex-row justify-center items-center   "
+      className=" fixed  top-0 bottom-0 right-0 left-0 flex flex-row justify-center items-center z-50   "
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
     >
       <motion.div
-        className=" relative bg-white  w-[90dvw] max-h-[80dvh] overflow-auto "
+        className=" relative bg-white  w-[90dvw] max-h-[80dvh] overflow-auto z-50"
         ref={dialogRef}
       >
         <div className="sticky top-0 flex flex-row justify-end">
