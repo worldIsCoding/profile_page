@@ -22,7 +22,7 @@ export const LocaleRedirect = () => {
   <DarkModeProvider>
     <div className="flex items-center justify-center w-[100dvw] h-[100dvh]">
       <span className="banner-highlight" title="Loading...">
-      <ReactLoading type={"bars"} color={"white"} height={300} width={300} />
+      <ReactLoading type={"bars"} color={"white"} height={30} width={30} />
       </span>
     </div>
    </DarkModeProvider>
