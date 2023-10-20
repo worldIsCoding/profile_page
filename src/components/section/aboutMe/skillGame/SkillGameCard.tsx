@@ -1,6 +1,6 @@
 import { motion, useSpring } from "framer-motion";
 import clsx from "clsx";
-import { MutableRefObject, RefObject, useEffect, useRef, useState } from "react";
+import {   useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import { CardBack } from "./CardBack";
 import { CardFront } from "./CardFront";
@@ -9,6 +9,8 @@ type SkillGameCardType = {
   index: number;
   clickHandle: () => void;
   item: { title: string; image: string };
+  enableClick:boolean
+  propsFlipped:boolean
 };
 
 const spring = {
@@ -18,7 +20,7 @@ const spring = {
 };
 
 export const SkillGameCard = (props: SkillGameCardType) => {
-  const { index, clickHandle, item } = props;
+  const { index, clickHandle, item,enableClick,propsFlipped } = props;
 
   const ref = useRef<HTMLDivElement>(null);
   const [isFlipped, setIsFlipped] = useState<boolean>(true);
@@ -27,7 +29,13 @@ export const SkillGameCard = (props: SkillGameCardType) => {
   const [rotateXaxis, setRotateXaxis] = useState(0);
   const [rotateYaxis, setRotateYaxis] = useState(0);
 
+  useEffect(()=>{
+    setIsFlipped(propsFlipped)
+},[propsFlipped])
+
+
   const handleMouseMove = (event: { clientY: number; clientX: number; }) => {
+
 
     const element = ref.current;
     if(element){
@@ -43,7 +51,6 @@ export const SkillGameCard = (props: SkillGameCardType) => {
         setRotateXaxis(degreeX);
         setRotateYaxis(degreeY);
     }
-   
   };
 
   const handleMouseEnd = () => {
@@ -59,6 +66,12 @@ export const SkillGameCard = (props: SkillGameCardType) => {
     dy.set(rotateYaxis);
   }, [rotateXaxis, rotateYaxis]);
 
+
+  const disable=useMemo(()=>{
+    return !enableClick || !isFlipped
+  },[enableClick,isFlipped])
+
+
   return (
     <motion.div
       transition={spring}
@@ -66,8 +79,20 @@ export const SkillGameCard = (props: SkillGameCardType) => {
         perspective: "1200px",
         transformStyle: "preserve-3d",
       }}
-      onClick={() => setIsFlipped(!isFlipped)}
-      className="  aspect-poker  relative  w-full h-full  "
+      onClick={() =>{
+        if(!disable){
+            if(isFlipped){
+                clickHandle()
+                // setIsFlipped(false)
+            }
+            
+        }
+       
+       
+      } }
+        layoutId={`card-${index}`}
+      exit={{ opacity: 0 ,y:100}}
+      className={clsx("  aspect-poker  relative  w-full h-full  ",!disable&&"cursor-pointer")}
     >
       <motion.div
         
