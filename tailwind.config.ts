@@ -25,6 +25,9 @@ const config: Config = {
       minHeight:{
         screen: "100dvh"
       },
+      borderRadius:{
+        "card":"1rem"
+      },
       colors:{
         // dark:{
         //   primary:{
@@ -58,6 +61,9 @@ const config: Config = {
           //   500:"#D5D5D5"},
           // normal:{
           //   500:"#E55604"}
+      },
+      aspectRatio:{
+        "poker": "2.5/3.5",
       }
      
     },

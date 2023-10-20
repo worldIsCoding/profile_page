@@ -36,7 +36,7 @@ const SectionDiv = ({ children }: { children: ReactElement }) => {
       exit={{ opacity: 0, scale: 0 }}
       transition={{ duration: 0.5 }}
       viewport={{ once: true, amount: 0.8 }}
-      className="relative w-full h-auto"
+      className="relative w-full h-auto "
     >
      
       {children}
@@ -120,7 +120,7 @@ export const Landing = () => {
         </motion.div>
         
 
-        <motion.div className=" relative mt-20 " >
+        <motion.div className=" relative mt-20  z-auto" >
           <div ref={infoRef} id={"about_me"} className=" relative" >   
             <SectionDiv>
             <SpotlightCard> 

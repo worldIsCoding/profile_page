@@ -4,6 +4,7 @@ import { useParams } from "next/navigation";
 import { useMemo, useState } from "react";
 import Image from "next/image";
 import clsx from "clsx"
+import { SkillGameCard } from "./SkillGameCard";
 
 export const SkillGame = () => {
   const params = useParams();
@@ -33,45 +34,31 @@ export const SkillGame = () => {
 
   return (
     <div className=" relative z-auto">
-      SkillGame
+      <h1>SkillGame</h1>
+      <div>roundCount:{roundCount}</div>
+
       <div className=" grid  grid-cols-8 gap-4">
         {transformList.map((item, index) => {
           const cardStatus = "";
           const isBack = currentShow.indexOf(index) === -1;
           return (
-            <motion.div
-              key={index}
-              className="relative skill_card_content border-2  p-2  rounded-xl  w-full h-auto aspect-square "
-              onClick={() =>
-                {
-                    setActive(0)
-                    if(currentShow.length===2){
-                        checkMatch(index)
-                        setCurrentShow([])
-                    }else{
-                        setCurrentShow([...currentShow, index]) 
-                    }
-                }
-                }
-            >
-                <motion.div className={clsx("", active===index||nextActive===index?"skill_card_content active":"skill_card_content" )}>
-              {!isBack ? (
-                <div className="skill_card_front">
-                  <h1>?</h1>
-                </div>
-              ) : (
-                <div className="skill_card_back "></div>
-              )}
 
-              {!isBack&&<motion.div className="  w-full h-full "
-              initial={{opacity:0}}
-              animate={{opacity:1}}
-              >
-                <Image src={item.image} alt={item.title} layout="fill" />
-              </motion.div>}
 
-              </motion.div>
-            </motion.div>
+            <SkillGameCard 
+            key={index}
+            index={index}
+            item={item}
+            clickHandle={()=>{
+                setActive(0)
+                if(currentShow.length===2){
+                    checkMatch(index)
+                    setCurrentShow([])
+                }else{
+                    setCurrentShow([...currentShow, index]) 
+                }
+
+            }}
+            />
           );
         })}
       </div>

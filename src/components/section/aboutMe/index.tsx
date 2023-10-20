@@ -52,8 +52,7 @@ export const AboutMe = () => {
   return (
     <>
      
-    <div className=" relative">
-     
+    <div className=" relative ">
       <motion.div
         initial={{ scale: 0 }}
         whileInView={{ scale: 1 }}
@@ -120,17 +119,16 @@ export const AboutMe = () => {
         </div>
       </motion.div>
 
-      {openModel&&
       
-        <CustomDialog close={()=>setOpenModel(false)}>
-          <div className=" relative">
-        <SkillGame />
-
-          </div>
-        </CustomDialog>
-       
-        }
     </div>
+    {openModel&&
+      
+      <CustomDialog close={()=>setOpenModel(false)}>  
+      <SkillGame />
+        
+      </CustomDialog>
+     
+      }
     </>
   );
 };

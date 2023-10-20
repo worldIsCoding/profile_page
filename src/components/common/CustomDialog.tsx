@@ -26,7 +26,7 @@ export const CustomDialog = ({
         className=" relative bg-white  w-[90dvw] max-h-[80dvh] overflow-auto z-50"
         ref={dialogRef}
       >
-        <div className="sticky top-0 flex flex-row justify-end">
+        <div className="sticky top-0 flex flex-row justify-end ">
         <motion.div
           onClick={close}
           className=" w-10 h-10   cursor-pointer   ">
@@ -34,7 +34,7 @@ export const CustomDialog = ({
         </motion.div>
         </div>
 
-        <div className="p-10">{children}</div>
+        <div className="relative p-10 z-50">{children}</div>
       </motion.div>
     </motion.div>
   );
