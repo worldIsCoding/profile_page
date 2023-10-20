@@ -36,7 +36,7 @@ const SectionDiv = ({ children }: { children: ReactElement }) => {
       exit={{ opacity: 0, scale: 0 }}
       transition={{ duration: 0.5 }}
       viewport={{ once: true, amount: 0.8 }}
-      className="relative w-full h-auto "
+      className="relative w-full min-h-screen"
     >
      
       {children}
@@ -82,14 +82,16 @@ export const Landing = () => {
   return (
     <div className=" relative w-full  ">
       <div className="  container  mx-auto  overflow-y-auto   relative ">
-        <motion.div className=" relative py-20 min-h-screen " id="/"
-         onViewportLeave={()=>{
-          setIsShowHeader(true)
-        }}
-        onViewportEnter={()=>{
-          setIsShowHeader(false)
-        }} >
-          <div className=" flex flex-row   relative  w-full    ">
+        <motion.div className=" relative py-20  " id="/"
+        >
+          <motion.div className=" flex flex-row   relative  w-full    "
+           onViewportLeave={()=>{
+            setIsShowHeader(true)
+          }}
+          onViewportEnter={()=>{
+            setIsShowHeader(false)
+          }} 
+          >
             <div className="flex-1 relative">
               <div className="mb-2">
                 <SpotlightCard>
@@ -116,7 +118,7 @@ export const Landing = () => {
                 </SpotlightCard>
               </div>
             </div>
-          </div>
+          </motion.div>
         </motion.div>
         
 

@@ -30,6 +30,15 @@ export const SkillGame = () => {
     }
   }, [matchList]);
 
+
+  const refreshGame = () => {
+    setDoneList([])
+    setRoundCount(0)
+    setMatchList([])
+    setErrorCount(0)
+  
+  }
+
   const randomList = useMemo(() => {
     const list = skillSet.concat(skillSet);
     list.sort(() => Math.random() - 0.5);
@@ -46,6 +55,7 @@ export const SkillGame = () => {
   }, [randomList, doneList]);
 
   const checkMatch = async (newIndex: number) => {
+    setRoundCount(roundCount + 1)
     await delay(500);
     if (transformList[newIndex].title === transformList[matchList[0]].title) {
       //match
@@ -67,6 +77,7 @@ export const SkillGame = () => {
               className={clsx(
                 "w-20 h-auto aspect-square ",isDone?"":"")}
               key={index}
+              title={skill.title}
             >
               <Image
               style={isDone?{}:{ WebkitFilter: 'grayscale(100%)', filter: 'grayscale(100%)'}} 
@@ -100,11 +111,17 @@ export const SkillGame = () => {
           {transformList.map((item, index) => {
             const propsFlipped = !matchList.includes(index);
 
-            return item?.isDone ? null : (
+            return  (
+              <motion.div 
+              key={index}
+              layoutId={`card-${index}`}
+              >
+              {item.isDone?<div />:
               <SkillGameCard
-                key={index}
+               
                 index={index}
                 item={item}
+                isDone={item?.isDone??false}
                 enableClick={matchList.length < 2}
                 clickHandle={() => {
                   if (matchList.length == 0) {
@@ -115,11 +132,19 @@ export const SkillGame = () => {
                   }
                 }}
                 propsFlipped={propsFlipped}
-              />
+              /> }
+
+</motion.div>
             );
           })}
+          
+         
         </AnimatePresence>
       </div>
+      <div>
+            <button onClick={refreshGame}>refresh</button>
+          </div>
+          
     </div>
   );
 };

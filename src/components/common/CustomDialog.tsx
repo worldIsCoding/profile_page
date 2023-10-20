@@ -30,14 +30,14 @@ export const CustomDialog = ({
   return (
 
     <motion.div
-      className=" fixed  top-0 bottom-0 right-0 left-0 backdrop-blur-xl z-50  flex  items-center  "
+      className=" fixed  top-0 bottom-0 right-0 left-0 backdrop-blur z-50  flex  items-center  "
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
     >
 
       <motion.div
-        className=" rounded-lg  absolute  right-1/2 left-1/2 overflow-hidden   -translate-x-1/2  bg-white   w-[90dvw]   h-screen lg:h-[90dvh]    "
+        className=" rounded-lg  absolute  right-1/2 left-1/2 overflow-hidden   -translate-x-1/2  bg-white lg:container   w-[90dvw]   h-screen lg:h-[90dvh]    "
         ref={dialogRef}
       >
           
