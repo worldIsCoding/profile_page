@@ -1,5 +1,5 @@
-import { motion } from "framer-motion";
-import { useRef } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { useEffect, useRef } from "react";
 import { useOnClickOutside } from "usehooks-ts";
 import CloseIcon from "@public/images/close.svg";
 export const CustomDialog = ({
@@ -15,27 +15,43 @@ export const CustomDialog = ({
     close();
   });
 
+  useEffect(()=>{
+    const html = document.querySelector("html");
+    if(html){
+      html.style.overflow ="hidden"
+    }
+    return ()=>{
+        if(html){
+          html.style.overflow ="auto" 
+        }
+    }
+  },[])
+
   return (
+
     <motion.div
-      className=" fixed  top-0 bottom-0 right-0 left-0 flex flex-row justify-center items-center z-50   "
+      className=" fixed  top-0 bottom-0 right-0 left-0 backdrop-blur-xl z-50  flex  items-center  "
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
     >
+
       <motion.div
-        className=" relative bg-white  w-[90dvw] max-h-[80dvh] overflow-auto z-50"
+        className=" rounded-lg  absolute  right-1/2 left-1/2 overflow-hidden   -translate-x-1/2  bg-white   w-[90dvw]   h-screen lg:h-[90dvh]    "
         ref={dialogRef}
       >
-        <div className="sticky top-0 flex flex-row justify-end ">
+          
         <motion.div
           onClick={close}
-          className=" w-10 h-10   cursor-pointer   ">
+          className="hover:scale-110 transition-all z-10 w-12 h-12  bg-white border shadow-lg p-2  rounded-full   absolute top-10 right-10 cursor-pointer  ">
           <CloseIcon />
         </motion.div>
-        </div>
+        
 
-        <div className="relative p-10 z-50">{children}</div>
+        <div className="rounded-lg relative p-10 h-full w-full    overflow-auto ">{children}</div>
+      
       </motion.div>
     </motion.div>
+
   );
 };

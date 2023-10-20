@@ -27,7 +27,7 @@ export const SpotlightCard=(props:{children:React.ReactNode})=>{
   
     return (
 
-      <div className="relative  group bg-primary-700/30 z-auto"
+      <div className="relative  group bg-primary-700/30 "
       onMouseMove={mouseMoveHandle}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
@@ -42,7 +42,7 @@ export const SpotlightCard=(props:{children:React.ReactNode})=>{
         />
      
 
-      <div className="z-auto p-10 relative w-full h-full"> 
+      <div className="p-10 relative w-full h-full"> 
       {children}
       </div>
         </div>
