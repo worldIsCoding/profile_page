@@ -7,15 +7,11 @@ import clsx from "clsx";
 import { useLayout } from "@/hook/useLayoutHook";
 
 export const ProfileIcon = () => {
-
-  const {currentScrollYProgress,scrollYProgress}=useLayout()
-  
-
+  const { currentScrollYProgress, scrollYProgress } = useLayout();
 
   return (
     <div className="  w-full flex flex-col justify-center  items-center ">
-
-      <div className="   m-8 relative   ">
+      <div className="  m-4 lg:m-8 relative   ">
         <svg
           className="transform rounded-full  z-0  -rotate-90  absolute top-1/2 bottom-1/2 right-1/2 left-1/2  -translate-x-1/2 -translate-y-1/2 "
           width="100%"
@@ -39,15 +35,15 @@ export const ProfileIcon = () => {
           />
         </svg>
 
-      <div className=" p-4 rounded-full z-10 bg-white">
-        <motion.div
-        initial={{rotate:0}}
-          style={{ rotate: Number(currentScrollYProgress) * 3.6 }}
-          className=" w-40 h-40 rounded-full z-10   "
-        >
-          <Image src={human} alt={""} className="" />
-        </motion.div>
-      </div>
+        <div className="p-2 lg:p-4 rounded-full z-10 bg-white">
+          <motion.div
+            initial={{ rotate: 0 }}
+            style={{ rotate: Number(currentScrollYProgress) * 3.6 }}
+            className="w-20 h-20 lg:w-40 lg:h-40 rounded-full z-10   "
+          >
+            <Image src={human} alt={""} className="" />
+          </motion.div>
+        </div>
       </div>
     </div>
   );

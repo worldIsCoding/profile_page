@@ -38,7 +38,6 @@ const SectionDiv = ({ children }: { children: ReactElement }) => {
       viewport={{ once: true, amount: 0.8 }}
       className="relative w-full min-h-screen"
     >
-     
       {children}
     </motion.div>
   );
@@ -47,7 +46,7 @@ const SectionDiv = ({ children }: { children: ReactElement }) => {
 export const Landing = () => {
   // const { lng } = useParams();
   const { t } = useTranslation();
-  const { isShowHeader, setIsShowHeader}=useLayout()
+  const { isShowHeader, setIsShowHeader } = useLayout();
   const infoRef = useRef<HTMLDivElement>(null);
   const jobRef = useRef<HTMLDivElement>(null);
   const projectRef = useRef<HTMLDivElement>(null);
@@ -56,10 +55,7 @@ export const Landing = () => {
 
   const [isSticky, setIsSticky] = useState<boolean>(false);
 
-
-
-
-  const onClickOption=(index:number)=>{
+  const onClickOption = (index: number) => {
     if (index == 0) {
       infoRef.current?.scrollIntoView({
         behavior: "smooth",
@@ -75,44 +71,40 @@ export const Landing = () => {
         behavior: "smooth",
       });
     }
-  }
-
-
+  };
 
   return (
     <div className=" relative w-full  ">
       <div className="  container  mx-auto  overflow-y-auto   relative ">
-        <motion.div className=" relative py-20  " id="/"
-        >
-          <motion.div className=" flex flex-row   relative  w-full    "
-           onViewportLeave={()=>{
-            setIsShowHeader(true)
-          }}
-          onViewportEnter={()=>{
-            setIsShowHeader(false)
-          }} 
+        <motion.div className=" relative py-20  " id="/">
+          <motion.div
+            className=" flex flex-row   relative  w-full    "
+            onViewportLeave={() => {
+              setIsShowHeader(true);
+            }}
+            onViewportEnter={() => {
+              setIsShowHeader(false);
+            }}
           >
             <div className="flex-1 relative">
               <div className="mb-2">
                 <SpotlightCard>
                   <div className="  ">
                     <ProfileIcon />
-                    <div className="mb-8">
+                    <div className="mb-8 relative">
                       <TypeTextView
                         baseText={t("intro")}
                         delay={1}
                         duration={2}
                         cursorClassName="bg-white"
-                        className="text-4xl font-COOL text-white"
+                        className=" absolute top-0 left-0 text-xl lg:text-4xl font-COOL text-white"
                       />
-                    </div> 
-                    <motion.div
-                      ref={anchorRef}
-                     
-                    >
-                      <OptionList
-                        onClickOption={onClickOption}
-                      />
+                      <div className="text-xl lg:text-4xl font-COOL  invisible">
+                        {t("intro")}
+                      </div>
+                    </div>
+                    <motion.div ref={anchorRef}>
+                      <OptionList onClickOption={onClickOption} />
                     </motion.div>
                   </div>
                 </SpotlightCard>
@@ -120,35 +112,34 @@ export const Landing = () => {
             </div>
           </motion.div>
         </motion.div>
-        
 
-        <motion.div className=" relative mt-20  z-auto" >
-          <div ref={infoRef} id={"about_me"} className=" relative" >   
+        <motion.div className=" relative mt-20  z-auto">
+          <div ref={infoRef} id={"about_me"} className=" relative">
             <SectionDiv>
-            <SpotlightCard> 
-              <div>
-           
-                <AboutMe />
-              </div>
+              <SpotlightCard>
+                <div>
+                  <AboutMe />
+                </div>
               </SpotlightCard>
             </SectionDiv>
-           
           </div>
 
           <div ref={jobRef} id={"job"}>
             <SectionDiv>
-               <SpotlightCard><div>
-                <Job />
-              </div> </SpotlightCard>
+              <SpotlightCard>
+                <div>
+                  <Job />
+                </div>{" "}
+              </SpotlightCard>
             </SectionDiv>
           </div>
 
           <div ref={projectRef} id={"project"}>
             <SectionDiv>
-            <SpotlightCard>
-              <div>
-                <Project />
-              </div>
+              <SpotlightCard>
+                <div>
+                  <Project />
+                </div>
               </SpotlightCard>
             </SectionDiv>
           </div>

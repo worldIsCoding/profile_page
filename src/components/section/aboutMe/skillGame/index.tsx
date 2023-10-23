@@ -30,14 +30,12 @@ export const SkillGame = () => {
     }
   }, [matchList]);
 
-
   const refreshGame = () => {
-    setDoneList([])
-    setRoundCount(0)
-    setMatchList([])
-    setErrorCount(0)
-  
-  }
+    setDoneList([]);
+    setRoundCount(0);
+    setMatchList([]);
+    setErrorCount(0);
+  };
 
   const randomList = useMemo(() => {
     const list = skillSet.concat(skillSet);
@@ -55,7 +53,7 @@ export const SkillGame = () => {
   }, [randomList, doneList]);
 
   const checkMatch = async (newIndex: number) => {
-    setRoundCount(roundCount + 1)
+    setRoundCount(roundCount + 1);
     await delay(500);
     if (transformList[newIndex].title === transformList[matchList[0]].title) {
       //match
@@ -68,19 +66,28 @@ export const SkillGame = () => {
   };
 
   return (
-    <div className=" relative  TODO">
+    <div className=" relative  TODO text-black">
       <div className=" flex flex-row flex-wrap gap-4 mb-4 ">
         {skillSet.map((skill, index) => {
           const isDone = doneList.some((it) => it.title == skill.title);
           return (
             <div
               className={clsx(
-                "w-20 h-auto aspect-square ",isDone?"":"")}
+                " select-none w-10 h-auto aspect-square ",
+                isDone ? "" : ""
+              )}
               key={index}
               title={skill.title}
             >
               <Image
-              style={isDone?{}:{ WebkitFilter: 'grayscale(100%)', filter: 'grayscale(100%)'}} 
+                style={
+                  isDone
+                    ? {}
+                    : {
+                        WebkitFilter: "grayscale(100%)",
+                        filter: "grayscale(100%)",
+                      }
+                }
                 src={skill.image}
                 alt={skill.title}
                 fill={false}
@@ -98,53 +105,37 @@ export const SkillGame = () => {
       {/* <div>done LIst: {doneList.map((listData,index)=><span key={index}>{listData.title}</span>)}</div> */}
       <div className=" flex flex-row  justify-between gap-2">
         <div>roundCount:{roundCount}</div>
-
-        <div className=" flex flex-row">
-          matchList:
-          {matchList.map((e, its) => (
-            <span key={its}>{e},</span>
-          ))}
-        </div>
       </div>
-      <div className=" grid  grid-cols-8 gap-4 mt-10">
+      <div className=" grid  grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-4 mt-10">
         <AnimatePresence>
           {transformList.map((item, index) => {
             const propsFlipped = !matchList.includes(index);
 
-            return  (
-              <motion.div 
-              key={index}
-              layoutId={`card-${index}`}
-              >
-              {item.isDone?<div />:
-              <SkillGameCard
-               
-                index={index}
-                item={item}
-                isDone={item?.isDone??false}
-                enableClick={matchList.length < 2}
-                clickHandle={() => {
-                  if (matchList.length == 0) {
-                    setMatchList([index]);
-                  } else if (matchList.length == 1) {
-                    setMatchList([...matchList, index]);
-                    checkMatch(index);
-                  }
-                }}
-                propsFlipped={propsFlipped}
-              /> }
-
-</motion.div>
+            return (
+              <motion.div key={index} layoutId={`card-${index}`}>
+                <SkillGameCard
+                  index={index}
+                  item={item}
+                  isDone={item?.isDone ?? false}
+                  enableClick={matchList.length < 2}
+                  clickHandle={() => {
+                    if (matchList.length == 0) {
+                      setMatchList([index]);
+                    } else if (matchList.length == 1) {
+                      setMatchList([...matchList, index]);
+                      checkMatch(index);
+                    }
+                  }}
+                  propsFlipped={propsFlipped}
+                />
+              </motion.div>
             );
           })}
-          
-         
         </AnimatePresence>
       </div>
       <div>
-            <button onClick={refreshGame}>refresh</button>
-          </div>
-          
+        <button onClick={refreshGame}>refresh</button>
+      </div>
     </div>
   );
 };
