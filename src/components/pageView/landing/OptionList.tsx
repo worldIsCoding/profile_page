@@ -31,7 +31,7 @@ export const OptionItem = (props: {
   return (
     <motion.button
       onClick={() => clickHandle()}
-      className={clsx("whitespace-nowrap  hidden delayShow  relative")}
+      className={clsx("whitespace-nowrap  hidden delayShow ")}
     >
       {children}
     </motion.button>
@@ -46,7 +46,7 @@ export const OptionList = (props: OptionListType) => {
     animate(
       ".delayShow",
       {
-        display: ["block"],
+        display: ["none", "block"],
         opacity: [0, 1],
         scale: 1,
         filter: "blur(0px)",
@@ -84,11 +84,11 @@ export const OptionList = (props: OptionListType) => {
 
   return (
     <motion.div
-      // initial={{ display: "none" }}
-      // animate={{ display: "flex" }}
+      initial={{ display: "none" }}
+      animate={{ display: "flex" }}
       transition={{ delay: 3, duration: 1 }}
       className={clsx(
-        "  w-full  flex-col text-white   items-start justify-start gap-4 relative"
+        "hidden  w-full  flex-col text-white   items-start justify-start gap-4 relative"
       )}
     >
       {optionListData.map((data, index) => {
@@ -123,21 +123,13 @@ export const OptionList = (props: OptionListType) => {
                 delay={data.delay}
                 duration={data.duration}
                 cursorClassName="bg-white"
-                className={clsx(
-                  "text-xl lg:text-4xl font-COOL text-white absolute top-0 left-0",
-                  isCurrentSelected && ""
-                )}
+                className={clsx(" text-4xl font-COOL text-white",isCurrentSelected&&"")}
               />
-              <div className="text-xl lg:text-4xl font-COOL invisible">
-                {data.duration}
-              </div>
             </OptionItem>
 
             {isCurrentSelected && (
               <motion.div className="w-6 h-6 transition-colors ">
-                <PlayIcon
-                  className={clsx(" rotate-180 w-full h-full  fill-white  ")}
-                />
+                <PlayIcon className={clsx(" rotate-180 w-full h-full  fill-white  ")} />
               </motion.div>
             )}
           </motion.div>

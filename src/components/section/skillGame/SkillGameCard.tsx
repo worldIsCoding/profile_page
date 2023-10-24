@@ -31,7 +31,7 @@ export const SkillGameCard = (props: SkillGameCardType) => {
   const [rotateYaxis, setRotateYaxis] = useState(0);
 
   useEffect(() => {
-    setIsFlipped(propsFlipped);
+    setIsFlipped(isDone?false:propsFlipped);
   }, [propsFlipped]);
 
   const handleMouseMove = (event: { clientY: number; clientX: number }) => {
@@ -65,80 +65,82 @@ export const SkillGameCard = (props: SkillGameCardType) => {
   }, [rotateXaxis, rotateYaxis]);
 
   const disable = useMemo(() => {
-    return !enableClick || !isFlipped || isDone;
-  }, [enableClick, isFlipped, isDone]);
+    return !enableClick || !isFlipped ||isDone;
+  }, [enableClick, isFlipped,isDone]);
 
   return (
-    <motion.div
-      transition={spring}
-      style={{
-        perspective: "1200px",
-        transformStyle: "preserve-3d",
-      }}
-      animate={isDone ? { opacity: 0, y: 10 } : { opacity: 1, y: 0 }}
-      onClick={() => {
-        if (!disable) {
-          if (isFlipped) {
-            clickHandle();
-            // setIsFlipped(false)
-          }
-        }
-      }}
-      exit={{ opacity: 0, y: 100 }}
-      className={clsx(
-        "  aspect-poker  relative  w-full h-full select-none	 ",
-        !disable && "cursor-pointer"
-      )}
-    >
-      <motion.div
-        whileHover={{ scale: 1.1 }}
-        ref={ref}
-        onMouseMove={handleMouseMove}
-        onMouseLeave={handleMouseEnd}
-        transition={spring}
-        style={{
-          rotateX: dx,
-          rotateY: dy,
-        }}
-        className="w-full h-full rounded-card "
-      >
-        <div
+        <motion.div
+          transition={spring}
           style={{
             perspective: "1200px",
             transformStyle: "preserve-3d",
-            width: "100%",
-            height: "100%",
           }}
-        >
-          <motion.div
-            animate={{ rotateY: isFlipped ? -180 : 0 }}
-            transition={spring}
-            style={{
-              width: "100%",
-              height: "100%",
-              zIndex: isFlipped ? 0 : 1,
-              backfaceVisibility: "hidden",
-              position: "absolute",
-            }}
-          >
-            <CardFront item={item} />
-          </motion.div>
+          onClick={() => {
+            if (!disable) {
+              if (isFlipped) {
+                clickHandle();
+                // setIsFlipped(false)
+              }
+            }
+          }}
+          layoutId={`card-${index}`}
+          exit={{ opacity: 0, y: 100 }}
+          className={clsx(
+            "  aspect-poker  relative  w-full h-full  ",
+            !disable && "cursor-pointer"
+          )}
 
+          animate={isDone ? { opacity: 0.5 } : { opacity: 1 }}
+        >  
           <motion.div
-            initial={{ rotateY: 180 }}
-            animate={{ rotateY: isFlipped ? 0 : 180 }}
+            whileHover={!isDone?{ scale: 1.1 }:{}}
+            ref={ref}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseEnd}
             transition={spring}
             style={{
-              zIndex: isFlipped ? 1 : 0,
-              backfaceVisibility: "hidden",
-              position: "absolute",
+              rotateX: dx,
+              rotateY: dy,
             }}
-            className="w-full h-full "
+            className="w-full h-full rounded-card "
           >
-            <CardBack />
+            <div
+              style={{
+                perspective: "1200px",
+                transformStyle: "preserve-3d",
+                width: "100%",
+                height: "100%",
+              }}
+            >
+              <motion.div
+                animate={{ rotateY: isFlipped ? -180 : 0 }}
+                transition={spring}
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  zIndex: isFlipped ? 0 : 1,
+                  backfaceVisibility: "hidden",
+                  position: "absolute",
+                }}
+              >
+                <CardFront item={item} />
+              </motion.div>
+
+              <motion.div
+                initial={{ rotateY: 180 }}
+                animate={{ rotateY: isFlipped ? 0 : 180 }}
+                transition={spring}
+                style={{
+                  zIndex: isFlipped ? 1 : 0,
+                  backfaceVisibility: "hidden",
+                  position: "absolute",
+                }}
+                className="w-full h-full "
+              >
+                <CardBack />
+              </motion.div>
+            </div>
           </motion.div>
-        </div>
-      </motion.div>
-    </motion.div>
+        </motion.div>
   );
 };
