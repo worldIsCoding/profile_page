@@ -31,7 +31,7 @@ export const SkillGameCard = (props: SkillGameCardType) => {
   const [rotateYaxis, setRotateYaxis] = useState(0);
 
   useEffect(() => {
-    setIsFlipped(propsFlipped);
+    setIsFlipped(isDone?false:propsFlipped);
   }, [propsFlipped]);
 
   const handleMouseMove = (event: { clientY: number; clientX: number }) => {
@@ -89,9 +89,11 @@ export const SkillGameCard = (props: SkillGameCardType) => {
             "  aspect-poker  relative  w-full h-full  ",
             !disable && "cursor-pointer"
           )}
+
+          animate={isDone ? { opacity: 0.5 } : { opacity: 1 }}
         >  
           <motion.div
-            whileHover={{ scale: 1.1 }}
+            whileHover={!isDone?{ scale: 1.1 }:{}}
             ref={ref}
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseEnd}

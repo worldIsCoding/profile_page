@@ -47,6 +47,7 @@ export const SkillGame = () => {
   const [name, setName] = useState<string>("");
   const [success, setSuccess] = useState<boolean>(false);
 
+
   let intervalId: NodeJS.Timeout | null = null;
   useEffect(() => {
     if (isStart) {
@@ -64,7 +65,10 @@ export const SkillGame = () => {
   }, [isStart]);
 
   useEffect(() => {
-    isClient && getRankList();
+    if(isClient){
+      getRankList();
+      setRandomListHandle()
+    } 
   }, [isClient]);
 
   useEffect(() => {
@@ -109,8 +113,7 @@ export const SkillGame = () => {
   const doneGameHandle = () => {
     const endTime = new Date().getTime();
     const timeDiff = (endTime - timeStart) / 1000;
-    console.log("endTime", endTime);
-    console.log("timeDiff", timeDiff);
+   
     setAllTime(timeDiff);
 
     setSuccess(true);
@@ -121,7 +124,6 @@ export const SkillGame = () => {
   };
 
   const addName = async () => {
-    console.log("add...");
     await addDoc(collection(db, "rank"), {
       name: name,
       time: allTime,
@@ -155,7 +157,7 @@ export const SkillGame = () => {
             const isDone = doneList.some((it) => it.title == skill.title);
             return (
               <div
-                className={clsx("w-20 h-auto aspect-square ", isDone ? "" : "")}
+                className={clsx("w-10 lg:w-20 h-auto aspect-square ", isDone ? "" : "")}
                 key={index}
                 title={skill.title}
               >
@@ -179,31 +181,27 @@ export const SkillGame = () => {
             );
           })}
         </div>
-        <div className="">
-        {rankList.length>0&&  <RankView rankList={rankList} />}
-        </div>
-
-        <div>需時: {allTime.toFixed(2)}s</div>
-        {/* <div>done LIst: {doneList.map((listData,index)=><span key={index}>{listData.title}</span>)}</div> */}
+       
         <div className=" flex flex-row  justify-between gap-2">
           CURRENT TIME :{timeCount}
         </div>
 
-        <div className=" grid   grid-cols-4 lg:grid-cols-8 gap-4 mt-10 relative p-2 lg:p-10">
+        <div className=" grid   grid-cols-4 lg:grid-cols-8 gap-2 lg:gap-4 mt-10 relative p-2 lg:p-10">
           {( !isStart ||success)
             && (
               <div className="flex items-center  absolute top-0 bottom-0 right-0 left-0 bg-black/50  z-10">
                 {success ? (
                   <div className="mx-auto   bg-white p-10">
-                    <div className=" flex flex-row mb-4" >
+                    <div className=" flex flex-row  justify-between mb-4 gap-4" >
                     <input
                       value={name}
                       onChange={(event) => {
                         setName(event.target.value);
                       }}
-                      placeholder="name"
+                      placeholder="input name"
+                      className="border  w-auto p-2"
                     />
-                     Time{allTime}
+                     Time: {allTime}
                     </div>
                    
                     <button
@@ -211,7 +209,7 @@ export const SkillGame = () => {
                         addName();
                       }}
                       disabled={name.trim().length == 0}
-                      className=" bg-secondary-600 text-white disabled:bg-gray-500 px-4 py-2 rounded-3xl shadow "
+                      className=" bg-secondary-500 text-white disabled:bg-gray-500 px-4 py-2 rounded-3xl shadow "
                     >
                       enter
                     </button>
@@ -223,7 +221,6 @@ export const SkillGame = () => {
                     onClick={() => {
                       setIsStart(true);
                       const startTime = new Date().getTime();
-                      console.log("startTime", startTime);
                       setTimeStart(startTime);
                     }}
                   >
@@ -238,8 +235,7 @@ export const SkillGame = () => {
               const propsFlipped = !matchList.includes(index);
 
               const isDone = doneList.some((it) => it.title == item.title);
-              return (isDone?null:
-                <motion.div key={index} >
+              return  <motion.div key={index} >
                   
                     <SkillGameCard
                       index={index}
@@ -258,13 +254,14 @@ export const SkillGame = () => {
                     />
                   
                 </motion.div>
-              );
+              
             })}
         </div>
-        <div>
-          <button onClick={resetGame}>refresh</button>
-        </div>
       </div>
+
+      <div className="">
+        {rankList.length>0&&  <RankView rankList={rankList} />}
+        </div>
     </div>
   );
 };
