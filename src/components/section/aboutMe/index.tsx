@@ -3,7 +3,7 @@ import { NumberCard } from "./NumberCard";
 import { useMemo, useState } from "react";
 import { useTranslation } from "@/i18n/client";
 import { CustomDialog } from "@/components/common/CustomDialog";
-import { SkillGame } from "./skillGame";
+import { SkillGame } from "../skillGame";
 
 export const AboutMe = () => {
   const { t } = useTranslation();

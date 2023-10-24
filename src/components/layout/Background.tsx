@@ -6,8 +6,8 @@ import clsx from "clsx"
 import { useDarkMode } from "@/hook/useDarkModeHook"
 import type { ISourceOptions,Engine } from "tsparticles-engine";
 import { loadSlim } from "tsparticles-slim";
-
-
+import Image from "next/image"
+import BackgroundCPU from "@public/images/backgroundCPU.png"
 
 
 const Particle=()=>{
@@ -187,7 +187,7 @@ const Particle=()=>{
 export const Background=()=>{
 
     return (
-        <div className={clsx("")}>
+        <div  >
             <Particle />
          </div>
     )

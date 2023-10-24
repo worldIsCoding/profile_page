@@ -43,7 +43,7 @@ export const CustomDialog = ({
           
         <motion.div
           onClick={close}
-          className="hover:scale-110 transition-all z-10 w-12 h-12  bg-white border shadow-lg p-2  rounded-full   absolute top-10 right-10 cursor-pointer  ">
+          className="z-20 hover:scale-110 transition-all  w-12 h-12  bg-white border shadow-lg p-2  rounded-full   absolute top-10 right-10 cursor-pointer  ">
           <CloseIcon />
         </motion.div>
         
