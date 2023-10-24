@@ -17,11 +17,12 @@ import {
   query,
   onSnapshot,
 } from "firebase/firestore";
+import { RankView } from "./RankView";
 type SkillSet = {
   title: string;
   image: string;
 }[];
-type RankItem = {
+export type RankItem = {
   name: string;
   time: number;
 };
@@ -45,7 +46,6 @@ export const SkillGame = () => {
   const [randomList, setRandomList] = useState<SkillSet>([]);
   const [name, setName] = useState<string>("");
   const [success, setSuccess] = useState<boolean>(false);
-
 
   let intervalId: NodeJS.Timeout | null = null;
   useEffect(() => {
@@ -113,9 +113,7 @@ export const SkillGame = () => {
     console.log("timeDiff", timeDiff);
     setAllTime(timeDiff);
 
-
     setSuccess(true);
-
 
     setIsStart(false);
 
@@ -130,6 +128,8 @@ export const SkillGame = () => {
     });
 
     setSuccess(false);
+    setName("");
+    
   };
 
   const getRankList = () => {
@@ -179,34 +179,8 @@ export const SkillGame = () => {
             );
           })}
         </div>
-        <div>
-          RANK :
-          {rankList.map((rank, index) => {
-            return (
-              <div key={index} className=" flex flex-row ">
-                <div>Name:{rank.name}</div>
-                <div>Time:{rank.time}</div>
-              </div>
-            );
-          })}
-
-         {success&& <div className=" flex flex-row ">
-            <input
-              value={name}
-              onChange={(event) => {
-                setName(event.target.value);
-              }}
-              placeholder="name"
-            />
-            <button
-              onClick={() => {
-                addName();
-              }}
-            >
-              addName
-            </button> , allTime{allTime}
-            <div></div>
-          </div>}
+        <div className="">
+        {rankList.length>0&&  <RankView rankList={rankList} />}
         </div>
 
         <div>需時: {allTime.toFixed(2)}s</div>
@@ -216,21 +190,49 @@ export const SkillGame = () => {
         </div>
 
         <div className=" grid   grid-cols-4 lg:grid-cols-8 gap-4 mt-10 relative p-10">
-          {!isStart && (
-            <div className="flex items-center  absolute top-0 bottom-0 right-0 left-0 bg-black/50  z-10">
-              <button
-                className="transition-all hover:scale-105 mx-auto border-2  px-4 py-2 bg-secondary-500 text-white rounded-3xl shadow "
-                onClick={() => {
-                  setIsStart(true);
-                  const startTime = new Date().getTime();
-                  console.log("startTime", startTime);
-                  setTimeStart(startTime);
-                }}
-              >
-                start
-              </button>
-            </div>
-          )}
+          {( !isStart ||success)
+            && (
+              <div className="flex items-center  absolute top-0 bottom-0 right-0 left-0 bg-black/50  z-10">
+                {success ? (
+                  <div className="mx-auto   bg-white p-10">
+                    <div className=" flex flex-row mb-4" >
+                    <input
+                      value={name}
+                      onChange={(event) => {
+                        setName(event.target.value);
+                      }}
+                      placeholder="name"
+                    />
+                     Time{allTime}
+                    </div>
+                   
+                    <button
+                      onClick={() => {
+                        addName();
+                      }}
+                      disabled={name.trim().length == 0}
+                      className=" bg-secondary-600 text-white disabled:bg-gray-500 px-4 py-2 rounded-3xl shadow "
+                    >
+                      enter
+                    </button>
+                    
+                  </div>
+                ) : (
+                  <button
+                    className="transition-all hover:scale-105 mx-auto border-2  px-4 py-2 bg-secondary-500 text-white rounded-3xl shadow "
+                    onClick={() => {
+                      setIsStart(true);
+                      const startTime = new Date().getTime();
+                      console.log("startTime", startTime);
+                      setTimeStart(startTime);
+                    }}
+                  >
+                    start
+                  </button>
+                )}
+              </div>
+            )  
+            }
 
           <AnimatePresence>
             {transformList.map((item, index) => {
