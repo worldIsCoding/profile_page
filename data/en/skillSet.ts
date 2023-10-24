@@ -18,7 +18,7 @@ export const skillSet=[
     },
     {
         title:"Github",
-        image:"/images/skill/github.png"
+        image:"/images/skill/githubIcon.png"
     },
     {
         title:"Gitlab",
