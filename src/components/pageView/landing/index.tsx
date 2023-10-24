@@ -80,7 +80,7 @@ export const Landing = () => {
 
 
   return (
-    <div className=" relative w-full  ">
+    <div className=" relative w-full   ">
       <div className="  container  mx-auto  overflow-y-auto   relative ">
         <motion.div className=" relative py-20  " id="/"
         >

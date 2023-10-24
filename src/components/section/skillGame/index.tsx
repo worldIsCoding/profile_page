@@ -96,7 +96,7 @@ export const SkillGame = () => {
   }, [randomList, doneList]);
 
   const checkMatch = async (newIndex: number) => {
-    await delay(300);
+    await delay(500);
     if (transformList[newIndex].title === transformList[matchList[0]].title) {
       //match
       setDoneList([...doneList, transformList[matchList[0]]]);
@@ -234,16 +234,13 @@ export const SkillGame = () => {
             )  
             }
 
-          <AnimatePresence>
             {transformList.map((item, index) => {
               const propsFlipped = !matchList.includes(index);
 
               const isDone = doneList.some((it) => it.title == item.title);
-              return (
-                <motion.div key={index} layoutId={`card-${index}`}>
-                  {item.isDone ? (
-                    <div />
-                  ) : (
+              return (isDone?null:
+                <motion.div key={index} >
+                  
                     <SkillGameCard
                       index={index}
                       item={item}
@@ -259,11 +256,10 @@ export const SkillGame = () => {
                       }}
                       propsFlipped={propsFlipped}
                     />
-                  )}
+                  
                 </motion.div>
               );
             })}
-          </AnimatePresence>
         </div>
         <div>
           <button onClick={resetGame}>refresh</button>

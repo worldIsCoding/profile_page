@@ -4,10 +4,12 @@ import { useMemo, useState } from "react";
 import { useTranslation } from "@/i18n/client";
 import { CustomDialog } from "@/components/common/CustomDialog";
 import { SkillGame } from "../skillGame";
+import Link from "next/link";
+import { useParams } from "next/navigation";
 
 export const AboutMe = () => {
   const { t } = useTranslation();
-
+  const  {lng} = useParams()
   const [openModel,setOpenModel]=useState<boolean>(false)
 
   const numberCardData = useMemo(() => {
@@ -80,6 +82,12 @@ export const AboutMe = () => {
         <div className=" whitespace-normal">
             {t("aboutMe.intro")}
         </div>
+
+        <div>
+          <Link  href={`${lng}/game`} > 
+          to Game Page
+          </Link>
+        </div>
         <div className=" flex flex-row flex-wrap TODO " onClick={()=>{setOpenModel(true)}}>
         {skillSetData.map((data,index)=>{
             return(
@@ -121,14 +129,7 @@ export const AboutMe = () => {
 
       
     </div>
-    {openModel&&
-      
-      <CustomDialog close={()=>setOpenModel(false)}>  
-      <SkillGame />
-        
-      </CustomDialog>
-     
-      }
+   
     </>
   );
 };
