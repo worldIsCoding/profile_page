@@ -189,7 +189,7 @@ export const SkillGame = () => {
           CURRENT TIME :{timeCount}
         </div>
 
-        <div className=" grid   grid-cols-4 lg:grid-cols-8 gap-4 mt-10 relative p-10">
+        <div className=" grid   grid-cols-4 lg:grid-cols-8 gap-4 mt-10 relative p-2 lg:p-10">
           {( !isStart ||success)
             && (
               <div className="flex items-center  absolute top-0 bottom-0 right-0 left-0 bg-black/50  z-10">
