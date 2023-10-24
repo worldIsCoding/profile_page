@@ -10,7 +10,7 @@ import { OptionList } from "../pageView/landing/OptionList";
 import { useTranslation } from "@/i18n/client";
 import { useLayout } from "@/hook/useLayoutHook";
 import clsx from "clsx"
-
+import Link from "next/link";
 
 export const Header = () => {
 
@@ -58,13 +58,16 @@ export const Header = () => {
       // `to-[${scrollYProgress}]`
       
       )}
-      initial={{ opacity: 0 }}
+      initial={{ opacity: 0.8 }}
       style={{background:`linear-gradient(to right, #000 ${currentScrollYProgress}%,  #01303f  ,#02577a  )`}}
       // style={{gradientColorStopPositions:currentScrollYProgress}}
-      animate={isShowHeader ? { opacity: 1,width:"100%",y:0  } : { opacity: 0,y:-50 }}
+      animate={isShowHeader ? { opacity: 1,  } : { opacity: 0.8  }}
       transition={{ duration: 0.3 }}
     >
-      <div className="mx-auto h-full container flex flex-row items-center w-full  gap-10  px-4 ">
+      <div className="mx-auto h-full container flex flex-row items-center justify-between w-full   px-4 ">
+        <div className=" flex flex-row items-center  gap-10 ">
+    <Link href="/"><div className="text-white">H</div></Link>
+       
         {optionList.map((data, index) => {
           return (
             <motion.div
@@ -78,6 +81,7 @@ export const Header = () => {
             </motion.div>
           );
         })}
+         </div>
       </div>
 
       <motion.div

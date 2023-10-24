@@ -65,7 +65,7 @@ export const AboutMe = () => {
         <motion.div
          initial={{width:0}}
          whileInView={{width:"100%"}}
-         viewport={{once:false}}
+         viewport={{once:true}}
          transition={{duration:1,delay:0.5}}
         className="w-full"
         >
