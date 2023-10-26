@@ -11,7 +11,7 @@ export const metadata: {[key:string]:Metadata}={
           "url":"https://cooltechsol.com",
           "siteName":"Cooltech Solutions Limited",
           "title":"Cooltech Solutions Limited",
-          "description":"",
+          "description":"test",
           // "images":[
           //   {
           //     "url":"https://cooltechsol.com/images/root-og.png",
